@@ -1,10 +1,12 @@
 const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const { URL } = require('url');
 
 const host = process.env.HOST || '0.0.0.0';
 const port = Number(process.env.PORT || 4200);
+const apiTargetUrl = process.env.API_TARGET_URL || '';
 const apiTargetHost = process.env.API_TARGET_HOST || '127.0.0.1';
 const apiTargetPort = Number(process.env.API_TARGET_PORT || 5113);
 const distRoot = path.join(__dirname, 'dist', 'personal-life-assistant-web', 'browser');
@@ -37,15 +39,24 @@ function sendFile(res, filePath) {
 }
 
 function proxyApi(req, res) {
-  const upstream = http.request(
+  const configuredTarget = apiTargetUrl
+    ? new URL(apiTargetUrl)
+    : new URL(`http://${apiTargetHost}:${apiTargetPort}`);
+  const requestModule = configuredTarget.protocol === 'https:' ? https : http;
+  const targetPort = configuredTarget.port
+    ? Number(configuredTarget.port)
+    : (configuredTarget.protocol === 'https:' ? 443 : 80);
+
+  const upstream = requestModule.request(
     {
-      host: apiTargetHost,
-      port: apiTargetPort,
+      protocol: configuredTarget.protocol,
+      host: configuredTarget.hostname,
+      port: targetPort,
       method: req.method,
       path: req.url,
       headers: {
         ...req.headers,
-        host: `${apiTargetHost}:${apiTargetPort}`
+        host: configuredTarget.host
       }
     },
     upstreamRes => {
