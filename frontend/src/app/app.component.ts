@@ -43,9 +43,8 @@ type NavItem = {
           </div>
 
           <div class="sidebar-hero" *ngIf="!isSidebarCollapsed">
-            <span class="sidebar-badge">Premium Workspace</span>
-            <h1>Personal life, planned beautifully.</h1>
-            <p>Chat, prioritize, and organize everything from one polished control center.</p>
+            <h1>Plan your day.</h1>
+            <p>Tasks, planner, and chat in one place.</p>
           </div>
 
           <nav class="sidebar-nav">
@@ -72,7 +71,6 @@ type NavItem = {
             <div class="status-orb"></div>
             <div>
               <strong>Assistant online</strong>
-              <p>Ready for tasks, plans, reminders, and guided decisions.</p>
             </div>
           </div>
         </div>
@@ -110,7 +108,6 @@ type NavItem = {
               </span>
               <span class="theme-toggle-copy">
                 <strong>{{ isDarkMode ? 'Dark mode' : 'Light mode' }}</strong>
-                <small>{{ isDarkMode ? 'Switch to light' : 'Switch to dark' }}</small>
               </span>
             </button>
 
@@ -131,7 +128,6 @@ type NavItem = {
               <div class="profile-avatar">AI</div>
               <div class="profile-copy">
                 <strong>Shruti</strong>
-                <span>Premium workspace</span>
               </div>
             </div>
           </div>
@@ -237,20 +233,8 @@ type NavItem = {
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
     }
 
-    .sidebar-badge {
-      display: inline-flex;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(79, 70, 229, 0.18);
-      color: var(--accent);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
     .sidebar-hero h1 {
-      margin: 14px 0 0;
+      margin: 0;
       font-size: clamp(1.9rem, 2.2vw, 2.4rem);
       line-height: 1.02;
       letter-spacing: -0.04em;
@@ -360,13 +344,6 @@ type NavItem = {
       display: block;
       color: var(--heading);
       margin-bottom: 4px;
-    }
-
-    .sidebar-footer p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.55;
-      font-size: 0.88rem;
     }
 
     .workspace {
@@ -492,8 +469,6 @@ type NavItem = {
     }
 
     .theme-toggle-copy {
-      display: grid;
-      gap: 2px;
       text-align: left;
     }
 
@@ -501,11 +476,6 @@ type NavItem = {
       font-size: 0.9rem;
       font-weight: 700;
       color: var(--heading);
-    }
-
-    .theme-toggle-copy small {
-      color: var(--muted);
-      font-size: 0.76rem;
     }
 
     .notification-btn {
@@ -552,21 +522,10 @@ type NavItem = {
       min-width: 0;
     }
 
-    .profile-copy strong,
-    .profile-copy span {
-      display: block;
-    }
-
     .profile-copy strong {
       color: var(--heading);
       font-size: 0.92rem;
       font-weight: 700;
-    }
-
-    .profile-copy span {
-      color: var(--muted);
-      font-size: 0.78rem;
-      margin-top: 2px;
     }
 
     .page-stage {
@@ -679,25 +638,25 @@ export class AppComponent {
       label: 'Dashboard',
       route: '/',
       exact: true,
-      description: 'Overview and focus tasks',
+      description: 'Overview',
       icon: 'M3 12.5 12 4l9 8.5M5 10.8V20h5v-5h4v5h5v-9.2'
     },
     {
       label: 'Tasks',
       route: '/tasks',
-      description: 'Track work and priorities',
+      description: 'Task list',
       icon: 'M8 7h12M8 12h12M8 17h12M3.8 7.2h.4M3.8 12.2h.4M3.8 17.2h.4'
     },
     {
       label: 'Planner',
       route: '/planner',
-      description: 'Generate a smart day plan',
+      description: 'Daily plan',
       icon: 'M7 3v4M17 3v4M4 9h16M5 6h14a1 1 0 0 1 1 1v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a1 1 0 0 1 1-1Z'
     },
     {
       label: 'Assistant Chat',
       route: '/chat',
-      description: 'Talk with your AI helper',
+      description: 'AI chat',
       icon: 'M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v6A2.5 2.5 0 0 1 17.5 15H11l-4 4v-4H6.5A2.5 2.5 0 0 1 4 12.5Z'
     }
   ];
@@ -708,7 +667,7 @@ export class AppComponent {
 
   pageKicker = 'Workspace';
   pageTitle = 'Dashboard';
-  pageDescription = 'Overview, conversations, planning, and task control in one premium workspace.';
+  pageDescription = 'See your current tasks.';
 
   constructor() {
     this.restoreTheme();
@@ -774,26 +733,26 @@ export class AppComponent {
     if (cleanUrl.startsWith('/chat')) {
       this.pageKicker = 'Conversation';
       this.pageTitle = 'AI Assistant';
-      this.pageDescription = 'Modern chat, fast actions, and polished message flows with premium visual depth.';
+      this.pageDescription = 'Ask, plan, and get help.';
       return;
     }
 
     if (cleanUrl.startsWith('/tasks')) {
       this.pageKicker = 'Execution';
       this.pageTitle = 'Task Studio';
-      this.pageDescription = 'Create, edit, and organize priorities with a cleaner, more focused workflow.';
+      this.pageDescription = 'Create and update tasks.';
       return;
     }
 
     if (cleanUrl.startsWith('/planner')) {
       this.pageKicker = 'Planning';
       this.pageTitle = 'Day Planner';
-      this.pageDescription = 'Generate a plan only when you want it, with clearer progress feedback and smarter pacing.';
+      this.pageDescription = 'Build a simple day plan.';
       return;
     }
 
     this.pageKicker = 'Overview';
     this.pageTitle = 'Dashboard';
-    this.pageDescription = 'See what matters now, open priority task details, and keep your day under control.';
+    this.pageDescription = 'See your current tasks.';
   }
 }

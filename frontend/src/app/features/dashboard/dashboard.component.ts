@@ -13,24 +13,20 @@ import { TaskItem } from '../../shared/models';
       <header class="hero">
         <div class="hero-copy">
           <p class="eyebrow">Today</p>
-          <h2>Know what needs attention right now.</h2>
-          <p>
-            Your dashboard shows the most important tasks first. Click any priority task to open its full details.
-          </p>
+          <h2>Focus on what matters today.</h2>
         </div>
       </header>
 
       <section class="panel list-panel">
         <div class="panel-head">
           <div>
-            <h3>Priority Tasks</h3>
-            <p>Click a task row to open a popup with all task information.</p>
+            <h3>Tasks</h3>
           </div>
         </div>
 
         <div class="empty" *ngIf="tasks.length === 0">
           <strong>No tasks yet</strong>
-          <p>Go to the Tasks tab and create one. It will show here automatically.</p>
+          <p>Create a task in the Tasks page.</p>
         </div>
 
         <div class="task-list" *ngIf="tasks.length > 0">
@@ -54,7 +50,6 @@ import { TaskItem } from '../../shared/models';
         <div class="panel-head modal-head">
           <div>
             <h3>Task Details</h3>
-            <p>Everything about the selected task in one place.</p>
           </div>
           <div class="modal-head-actions">
             <span class="status-chip" [class.done]="selectedTask?.isCompleted">
@@ -127,14 +122,6 @@ import { TaskItem } from '../../shared/models';
       color: #f8fbff;
     }
 
-    .hero-copy p:last-child {
-      margin: 12px 0 0;
-      color: rgba(226, 232, 240, 0.78);
-      line-height: 1.65;
-      font-size: 0.98rem;
-      max-width: 720px;
-    }
-
     .panel,
     .modal-card {
       background: rgba(255,255,255,0.84);
@@ -159,12 +146,6 @@ import { TaskItem } from '../../shared/models';
       margin: 0;
       font-size: 1.65rem;
       color: var(--panel-text);
-    }
-
-    .panel-head p {
-      margin: 8px 0 0;
-      color: var(--panel-muted);
-      line-height: 1.55;
     }
 
     .task-list {

@@ -23,12 +23,9 @@ type QuickAction = {
     <section class="chat-page">
       <section class="hero-card">
         <div class="hero-copy">
-          <span class="section-badge">Premium Assistant</span>
-          <h2>Plan, organize, and decide with a smarter conversation flow.</h2>
-          <p>
-            Ask for tasks, plans, reminders, or quick summaries. The interface is designed to feel calm, modern,
-            and deeply interactive.
-          </p>
+          <span class="section-badge">Assistant</span>
+          <h2>Ask the assistant</h2>
+          <p>Use chat for tasks, plans, and reminders.</p>
 
           <div class="chip-row">
             <button type="button" class="action-chip" *ngFor="let item of quickActions" (click)="usePrompt(item.prompt)">
@@ -44,7 +41,7 @@ type QuickAction = {
             <div class="assist-avatar">AI</div>
             <div>
               <strong>Nova Assistant</strong>
-              <span>{{ isThinking ? 'Thinking and drafting a reply' : 'Ready for your next instruction' }}</span>
+              <span>{{ isThinking ? 'Thinking...' : 'Ready' }}</span>
             </div>
           </div>
 
@@ -59,7 +56,7 @@ type QuickAction = {
       <section class="chat-shell">
         <div class="conversation-head">
           <div>
-            <span class="conversation-kicker">Live conversation</span>
+            <span class="conversation-kicker">Chat</span>
             <h3>Assistant chat</h3>
           </div>
           <div class="conversation-status" [class.busy]="isThinking">
@@ -76,8 +73,8 @@ type QuickAction = {
               <span></span>
             </div>
             <div>
-              <strong>Start with a quick action or type your own request.</strong>
-              <p>Try: “Create a task for tomorrow’s client call” or “Plan my day around urgent work”.</p>
+              <strong>Start with a quick action or type a message.</strong>
+              <p>Example: “Create a task for tomorrow.”</p>
             </div>
           </div>
 
@@ -862,7 +859,7 @@ export class ChatComponent {
   messages: ChatMessage[] = [
     {
       role: 'assistant',
-      text: 'I can help plan your day, prioritize tasks, track habits, and create tasks from chat.',
+      text: 'I can help with tasks, plans, and reminders.',
       meta: 'Just now'
     }
   ];

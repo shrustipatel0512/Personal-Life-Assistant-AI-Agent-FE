@@ -12,12 +12,9 @@ import { PlannerItem } from '../../shared/models';
       <section class="hero card">
         <div>
           <p class="eyebrow">AI Planner</p>
-          <h2>Suggested day plan</h2>
-          <p class="hero-copy">
-            Open this page, review the summary, and click <strong>Generate plan</strong> only when you want the assistant to build today’s schedule.
-          </p>
+          <h2>Day plan</h2>
           <p class="status-line neutral-text" *ngIf="!hasGenerated && !isLoading">
-            Ready to generate a plan for {{ openTaskCount }} open task{{ openTaskCount === 1 ? '' : 's' }}.
+            {{ openTaskCount }} open task{{ openTaskCount === 1 ? '' : 's' }} ready.
           </p>
           <p class="status-line loading-text" *ngIf="isLoading">Generating a fresh plan...</p>
           <p class="status-line success-text" *ngIf="!isLoading && successMessage">{{ successMessage }}</p>
@@ -29,42 +26,23 @@ import { PlannerItem } from '../../shared/models';
         </button>
       </section>
 
-      <section class="how-it-works card">
-        <h3>How to use this</h3>
-        <div class="steps">
-          <article class="step">
-            <strong>1. Add tasks first</strong>
-            <p>Create tasks in the Tasks tab with title, due date, and estimated time.</p>
-          </article>
-          <article class="step">
-            <strong>2. Open Planner</strong>
-            <p>The page will wait. It will not generate anything until you click the button.</p>
-          </article>
-          <article class="step">
-            <strong>3. Click Generate plan</strong>
-            <p>The assistant will build a day plan from your open tasks, starting with the earliest due items.</p>
-          </article>
-        </div>
-      </section>
-
       <section class="card">
         <div class="section-head">
           <div>
             <h3>Today’s plan</h3>
-            <p *ngIf="plan.length > 0">These blocks were generated from your current tasks.</p>
-            <p *ngIf="plan.length === 0 && !hasGenerated">No plan yet. Click the button when you are ready.</p>
-            <p *ngIf="plan.length === 0 && hasGenerated">No schedule blocks were created.</p>
+            <p *ngIf="plan.length === 0 && !hasGenerated">No plan yet.</p>
+            <p *ngIf="plan.length === 0 && hasGenerated">No blocks created.</p>
           </div>
         </div>
 
         <div class="empty" *ngIf="!hasGenerated && !isLoading">
-          <strong>Planner is waiting</strong>
-          <p>The page is ready. Click <strong>Generate plan</strong> when you want to create today’s schedule.</p>
+          <strong>Ready</strong>
+          <p>Click <strong>Generate plan</strong>.</p>
         </div>
 
         <div class="empty" *ngIf="!isLoading && hasGenerated && openTaskCount === 0">
           <strong>No open tasks</strong>
-          <p>Create tasks first, then come back here and click <strong>Generate plan</strong>.</p>
+          <p>Create tasks first.</p>
         </div>
 
         <div class="loading" *ngIf="isLoading">
@@ -78,7 +56,7 @@ import { PlannerItem } from '../../shared/models';
 
         <div class="empty" *ngIf="!isLoading && hasGenerated && openTaskCount > 0 && plan.length === 0">
           <strong>No plan returned</strong>
-          <p>The planner did not return any schedule blocks for your tasks. Try again after updating task dates.</p>
+          <p>Try again after updating your tasks.</p>
         </div>
 
         <div class="plan-list" *ngIf="!isLoading && plan.length > 0">
@@ -139,9 +117,7 @@ import { PlannerItem } from '../../shared/models';
       color: var(--panel-text);
     }
 
-    .hero-copy,
     .section-head p,
-    .step p,
     .plan-content p,
     .empty p {
       margin: 10px 0 0;
@@ -189,30 +165,9 @@ import { PlannerItem } from '../../shared/models';
       box-shadow: none;
     }
 
-    .how-it-works h3,
     .section-head h3 {
       margin: 0;
       font-size: 1.55rem;
-      color: var(--panel-text);
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 18px;
-    }
-
-    .step {
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.74);
-      border: 1px solid rgba(27, 26, 23, 0.08);
-    }
-
-    .step strong {
-      display: block;
-      font-size: 1rem;
       color: var(--panel-text);
     }
 
@@ -315,7 +270,6 @@ import { PlannerItem } from '../../shared/models';
     }
 
     @media (max-width: 1100px) {
-      .steps,
       .plan-item {
         grid-template-columns: 1fr;
       }

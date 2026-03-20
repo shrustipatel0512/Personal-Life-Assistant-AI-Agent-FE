@@ -15,10 +15,8 @@ import { TaskItem } from '../../shared/models';
       <header class="page-header">
         <div class="headline">
           <p class="eyebrow">Tasks</p>
-          <h2>Manage tasks with clear details and simple actions</h2>
-          <p class="hero-copy">
-            Create a new task on the left, then click any task card to edit its name, description, category, due date, and status.
-          </p>
+          <h2>Create and manage tasks</h2>
+          <p class="hero-copy">Add tasks, then edit them from the list.</p>
           <p class="message error page-error" *ngIf="loadErrorMessage">{{ loadErrorMessage }}</p>
         </div>
 
@@ -43,7 +41,6 @@ import { TaskItem } from '../../shared/models';
           <div class="card-head">
             <div>
               <h3>Create Task</h3>
-              <p>Add the task basics here. Category and priority can be adjusted after creation.</p>
             </div>
           </div>
 
@@ -93,11 +90,6 @@ import { TaskItem } from '../../shared/models';
             </div>
           </div>
 
-          <div class="hint-row">
-            <span>Due date is converted to UTC before it reaches the API.</span>
-            <span>After saving, click a task card to edit its category and details.</span>
-          </div>
-
           <p class="message success" *ngIf="successMessage">{{ successMessage }}</p>
           <p class="message error" *ngIf="errorMessage">{{ errorMessage }}</p>
 
@@ -112,7 +104,7 @@ import { TaskItem } from '../../shared/models';
           <div class="card-head">
             <div>
               <h3>Task Board</h3>
-              <p>Click a task card to edit it. Each card now shows the category, description, due date, and estimate clearly.</p>
+              <p>Open a task to edit it.</p>
             </div>
             <button type="button" class="ghost" (click)="refreshTasks()" [disabled]="isSubmitting || isSavingEdit">
               Refresh
@@ -168,7 +160,6 @@ import { TaskItem } from '../../shared/models';
         <div class="card-head modal-head">
           <div>
             <h3>Edit Task</h3>
-            <p>Update the selected task here, then save the changes back to the API.</p>
           </div>
           <div class="modal-head-actions">
             <span class="status-chip" [class.done]="editIsCompleted">
@@ -421,16 +412,6 @@ import { TaskItem } from '../../shared/models';
     textarea {
       resize: vertical;
       min-height: 110px;
-    }
-
-    .hint-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      margin-top: 14px;
-      color: var(--panel-muted);
-      font-size: 0.88rem;
-      line-height: 1.5;
     }
 
     .message {
@@ -692,7 +673,6 @@ import { TaskItem } from '../../shared/models';
         padding: 18px;
       }
 
-      .hint-row,
       .card-head,
       .task-top,
       .task-actions,
