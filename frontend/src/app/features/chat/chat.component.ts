@@ -143,6 +143,7 @@ type QuickAction = {
               [(ngModel)]="draft"
               name="draft"
               rows="2"
+              (keydown)="handleComposerKeydown($event)"
               [disabled]="isThinking"
               placeholder="Ask anything: create a task, plan your day, summarize priorities, or set a reminder"></textarea>
           </label>
@@ -669,11 +670,12 @@ type QuickAction = {
       padding: 16px 18px;
       border-radius: 20px;
       border: 1px solid rgba(148, 163, 184, 0.12);
-      background: var(--surface-strong);
-      color: var(--text);
+      background: #ffffff;
+      color: #111111;
       outline: none;
       transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+      caret-color: #111111;
     }
 
     textarea::placeholder {
@@ -913,6 +915,15 @@ export class ChatComponent {
     }
 
     this.draft = prompt;
+  }
+
+  handleComposerKeydown(event: KeyboardEvent) {
+    if (event.key !== 'Enter' || event.shiftKey) {
+      return;
+    }
+
+    event.preventDefault();
+    this.send();
   }
 
   private scrollToBottom() {

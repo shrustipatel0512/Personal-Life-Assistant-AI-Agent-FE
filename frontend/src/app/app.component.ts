@@ -173,6 +173,8 @@ type NavItem = {
       gap: 22px;
       height: 100%;
       padding: 22px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
     }
 
     .brand-row {
@@ -372,6 +374,7 @@ type NavItem = {
       display: grid;
       grid-template-rows: auto 1fr;
       gap: 18px;
+      min-height: 0;
     }
 
     .topbar {
@@ -569,6 +572,7 @@ type NavItem = {
     .page-stage {
       min-width: 0;
       padding: 6px 2px 20px;
+      min-height: 0;
     }
 
     .mobile-scrim {
@@ -629,6 +633,7 @@ type NavItem = {
         height: auto;
         transform: translateX(calc(-100% - 18px));
         transition: transform 0.22s ease;
+        overflow: hidden;
       }
 
       .sidebar.mobile-open {
