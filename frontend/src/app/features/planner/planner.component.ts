@@ -269,6 +269,16 @@ import { PlannerItem } from '../../shared/models';
       }
     }
 
+    @media (max-width: 960px) {
+      .hero {
+        flex-direction: column;
+      }
+
+      .hero button {
+        width: 100%;
+      }
+    }
+
     @media (max-width: 1100px) {
       .plan-item {
         grid-template-columns: 1fr;
@@ -280,8 +290,8 @@ import { PlannerItem } from '../../shared/models';
         padding: 18px;
       }
 
-      .hero {
-        flex-direction: column;
+      h2 {
+        font-size: 1.65rem;
       }
 
       button {

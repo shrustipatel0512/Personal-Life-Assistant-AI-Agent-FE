@@ -299,7 +299,7 @@ import { TaskItem } from '../../shared/models';
       cursor: pointer;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 900px) {
       .detail-grid {
         grid-template-columns: 1fr;
       }
@@ -311,11 +311,19 @@ import { TaskItem } from '../../shared/models';
         padding: 18px;
       }
 
+      h2 {
+        font-size: 1.65rem;
+      }
+
       .task-row,
       .panel-head,
       .modal-head-actions {
         flex-direction: column;
         align-items: flex-start;
+      }
+
+      .task-row span {
+        width: 100%;
       }
 
       .modal-backdrop {

@@ -577,6 +577,23 @@ type NavItem = {
       padding: 14px;
     }
 
+    @media (max-width: 1280px) {
+      .app-shell {
+        grid-template-columns: 280px minmax(0, 1fr);
+        padding: 16px;
+      }
+
+      .topbar {
+        padding: 16px 18px;
+      }
+
+      .topbar,
+      .topbar-left,
+      .topbar-actions {
+        flex-wrap: wrap;
+      }
+    }
+
     @media (max-width: 1080px) {
       .app-shell {
         grid-template-columns: 1fr;
@@ -613,6 +630,24 @@ type NavItem = {
       .topbar-left,
       .topbar-actions {
         flex-wrap: wrap;
+      }
+
+      .app-shell {
+        padding: 10px;
+        gap: 12px;
+      }
+
+      .topbar {
+        padding: 14px 16px;
+        border-radius: 22px;
+      }
+
+      .page-meta h2 {
+        font-size: 1.2rem;
+      }
+
+      .page-meta p {
+        font-size: 0.84rem;
       }
 
       .theme-toggle {

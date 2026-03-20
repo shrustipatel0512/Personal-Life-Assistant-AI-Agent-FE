@@ -657,6 +657,13 @@ import { TaskItem } from '../../shared/models';
       font-weight: 600;
     }
 
+    @media (max-width: 1280px) {
+      .page-header,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 1100px) {
       .page-header,
       .stats,
@@ -673,6 +680,14 @@ import { TaskItem } from '../../shared/models';
         padding: 18px;
       }
 
+      h2 {
+        font-size: 1.65rem;
+      }
+
+      .grid {
+        gap: 18px;
+      }
+
       .card-head,
       .task-top,
       .task-actions,
@@ -680,6 +695,10 @@ import { TaskItem } from '../../shared/models';
       .modal-head-actions {
         flex-direction: column;
         align-items: flex-start;
+      }
+
+      .meta-row {
+        gap: 8px;
       }
 
       .modal-backdrop {

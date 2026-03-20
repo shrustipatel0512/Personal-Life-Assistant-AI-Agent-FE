@@ -775,9 +775,29 @@ type QuickAction = {
       }
     }
 
-    @media (max-width: 1080px) {
+    @media (max-width: 1280px) {
       .hero-card {
         grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .conversation-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .composer {
+        grid-template-columns: 1fr;
+      }
+
+      .composer-icon {
+        display: none;
+      }
+
+      .send-button {
+        width: 100%;
+        justify-content: center;
       }
     }
 
@@ -786,6 +806,10 @@ type QuickAction = {
       .hero-card {
         padding: 18px;
         border-radius: 26px;
+      }
+
+      h2 {
+        font-size: 1.7rem;
       }
 
       .welcome-card {
@@ -808,19 +832,6 @@ type QuickAction = {
 
       .bubble {
         width: 100%;
-      }
-
-      .composer {
-        grid-template-columns: 1fr;
-      }
-
-      .composer-icon {
-        display: none;
-      }
-
-      .send-button {
-        width: 100%;
-        justify-content: center;
       }
     }
   `]
