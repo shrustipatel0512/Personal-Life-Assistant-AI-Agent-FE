@@ -3,10 +3,10 @@ const fs = require('fs');
 const path = require('path');
 const { URL } = require('url');
 
-const host = '0.0.0.0';
-const port = 4200;
-const apiTargetHost = '127.0.0.1';
-const apiTargetPort = 5113;
+const host = process.env.HOST || '0.0.0.0';
+const port = Number(process.env.PORT || 4200);
+const apiTargetHost = process.env.API_TARGET_HOST || '127.0.0.1';
+const apiTargetPort = Number(process.env.API_TARGET_PORT || 5113);
 const distRoot = path.join(__dirname, 'dist', 'personal-life-assistant-web', 'browser');
 
 const mimeTypes = {

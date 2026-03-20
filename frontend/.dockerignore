@@ -1,0 +1,7 @@
+node_modules
+dist
+.angular
+npm-debug.log
+frontend-dev.log
+frontend-dev.err.log
+frontend-dev.out.log
