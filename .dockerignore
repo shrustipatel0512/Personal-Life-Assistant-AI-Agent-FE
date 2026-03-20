@@ -1,0 +1,7 @@
+frontend/node_modules
+frontend/dist
+frontend/.angular
+frontend/.npm-cache
+frontend/frontend-dev.log
+frontend/frontend-dev.err.log
+frontend/frontend-dev.out.log
