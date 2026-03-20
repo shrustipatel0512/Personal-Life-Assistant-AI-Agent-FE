@@ -1,7 +1,7 @@
 import { AsyncPipe, DatePipe, NgFor, NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Subject, map, startWith, switchMap } from 'rxjs';
+import { Subject, catchError, map, of, startWith, switchMap } from 'rxjs';
 import { ApiService } from '../../shared/api.service';
 import { TaskItem } from '../../shared/models';
 
@@ -19,6 +19,7 @@ import { TaskItem } from '../../shared/models';
           <p class="hero-copy">
             Create a new task on the left, then click any task card to edit its name, description, category, due date, and status.
           </p>
+          <p class="message error page-error" *ngIf="loadErrorMessage">{{ loadErrorMessage }}</p>
         </div>
 
         <div class="stats">
@@ -736,11 +737,21 @@ export class TasksComponent {
   isSavingEdit = false;
   editSuccessMessage = '';
   editErrorMessage = '';
+  loadErrorMessage = '';
 
   readonly tasks$ = this.refreshTasks$.pipe(
     startWith(void 0),
-    switchMap(() => this.api.getTasks()),
-    map((response) => response.data ?? [])
+    switchMap(() => this.api.getTasks().pipe(
+      map((response) => {
+        this.loadErrorMessage = '';
+        return response.data ?? [];
+      }),
+      catchError((error) => {
+        const message = error?.error?.message || error?.error?.title || 'Could not load tasks from the API. You can still create a task and try refresh again.';
+        this.loadErrorMessage = message;
+        return of([] as TaskItem[]);
+      })
+    ))
   );
 
   createTask() {
